@@ -1,0 +1,110 @@
+import cryptography
+from cryptography.fernet import Fernet
+import tkinter
+from tkinter import *
+global key
+key = Fernet.generate_key()
+global token
+global l
+#class uiButton:
+ #   def __init__(self, windowInheritor, commandClick):
+  #             self.windowInheritor = windowInheritor
+   #            self.commandClick = commandClick
+#
+ #              Tk.Button__init__(self, windowInheritor, commandClick)
+  #             self.__createWidgets
+#def mainWindow():
+ #   homeWindow = Tk()
+  #  homeWindow.title("Lux Encryption")
+   # homeWindow.geometry('800x1250')
+   # frame = Frame(homeWindow)
+  #  frame.grid()
+ #   welcomeLabel = Label(homeWindow, text= "Lux Encryption Methods")
+#    welcomeLabel.grid(row = 0, column = 1)
+   # encryptAFile = uiButton(homeWindow, encryptFunction)
+#    homeWindow.mainloop()
+def decryptFunction():
+    global token
+    global key
+    token = input("Input Authentication Token to decrypt")
+    r = Fernet(key)
+    token = bytes(token, 'utf-8')
+    print(encryptedToken)
+    while True:
+        repeatAnswer = input("Encrypt another message? [y/n]")
+        print(repeatAnswer)
+        if repeatAnswer == "y":
+            repeatAnswer = None
+            encryptFunction()
+        else:
+            repeatAnswer = None
+            break
+        break
+    decryptFunction()
+    
+def encryptFile():
+    global l
+    l = Fernet(key)
+    print("Your key is: " +  str(l))
+    activeDirectory = input("Input directory of file to be encrypted")
+    try:
+        os.cd(activeDirectory)
+    except:
+        print("Something went wrong here. Staying in this file")
+    finally:
+        activeFile = input("Input File Name to encrypt  ")
+        ygrec = open(activeFile, "r")
+        stringOfFile = ygrec.read()
+        ygrec.flush()
+        ygrec = open(activeFile, 'wb')
+        xray = bytes(stringOfFile, 'utf-8')
+        papa = l.encrypt(xray)
+        print(papa)
+ #      zulu = str(papa)
+        funky = ygrec.write(xray)
+        ygrec.close()
+        
+def decryptFile():
+    global l
+    activeDirectory = input("Input directory of file to be decrypted")
+    try:
+        os.cd(activeDirectory)
+    except:
+        print("Something went wrong here. Staying in this file")
+    finally:
+        activeFile = input("Input File Name to encrypt")
+        kilo = open(activeFile, "r")
+        stringDelta = str(kilo)
+        kilo.flush()
+        kilo =open(activeFile, "wb")
+        byteDelta = bytes(stringDelta, 'utf-8')
+        sierra = l.decrypt(byteDelta)
+        Omicron = activeFile.write(sierra)
+        print(omicron)
+        
+#mainWindow()
+encryptFile()
+#decryptFile()
+key2 = Fernet.generate_key()
+f2 = Fernet(key2)
+
+
+
+#def encryptFunction():
+ #   global key
+  #  global token
+   # f = Fernet(key)#
+#    token = input("Message to be encrypted")
+ #   print(token)
+  #  token = f.encrypt(b"token")
+   # print(token)
+   # while True:
+  #      repeatAnswer = input("Encrypt another message? [y/n]")
+ #       print(repeatAnswer)
+#        if repeatAnswer == "y":
+ #           repeatAnswer = None
+  #          encryptFunction()
+   #     else:
+    #        repeatAnswer = None
+     #       break
+      #  break
